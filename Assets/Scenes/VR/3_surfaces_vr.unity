@@ -137,6 +137,7 @@ GameObject:
   - component: {fileID: 113648128}
   - component: {fileID: 113648133}
   - component: {fileID: 113648132}
+  - component: {fileID: 113648134}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -303,7 +304,7 @@ MonoBehaviour:
       m_Calls: []
   m_AttachTransform: {fileID: 0}
   m_AttachEaseInTime: 0.15
-  m_MovementType: 1
+  m_MovementType: 2
   m_VelocityDamping: 1
   m_VelocityScale: 1
   m_AngularVelocityDamping: 1
@@ -352,8 +353,20 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 126
   m_CollisionDetection: 2
+--- !u!114 &113648134
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 113648127}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2cc7a1a3832397240b92dcb56571f443, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &141719294
 GameObject:
   m_ObjectHideFlags: 0
@@ -826,6 +839,7 @@ GameObject:
   - component: {fileID: 1024920048}
   - component: {fileID: 1024920047}
   - component: {fileID: 1024920049}
+  - component: {fileID: 1024920050}
   m_Layer: 0
   m_Name: Graph
   m_TagString: Untagged
@@ -1007,6 +1021,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 3, y: 1, z: 3}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1024920050
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1024920044}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2cc7a1a3832397240b92dcb56571f443, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1285478477 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6912165294714390529, guid: d9809c5e8418bb047bf2c8ba1d1a2cec, type: 3}
