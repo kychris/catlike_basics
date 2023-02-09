@@ -1073,6 +1073,34 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "Cinematics",
+            "id": "7d36d9c7-14d6-4228-b096-7c3aaaca20e0",
+            "actions": [
+                {
+                    "name": "MusicStart",
+                    "type": "Button",
+                    "id": "ab54ec11-c2a0-445f-bae5-1847d4a2601b",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "81941306-31a9-4691-a107-d5465b5dc42d",
+                    "path": "<OculusTouchController>{RightHand}/primaryButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MusicStart",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": [
