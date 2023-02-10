@@ -8,6 +8,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/VR/3_surfaces_vr.unity
     guid: 0c0194c3df045fd4288c3a210ed0b4dd
+  - enabled: 0
+    path: Assets/Normal/Examples (URP)/VR Player/Realtime + VR Player.unity
+    guid: 84218d11aa1e88249920d7eb329a3d03
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 9347b2f9bc95864498e13334eceb490d, type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 2c9244f4c827cf044bb1d1ab534fa5d9, type: 2}

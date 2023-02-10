@@ -1,3 +1,4 @@
+using Normal.Realtime;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 
@@ -21,6 +22,7 @@ public class XROffsetGrabbable : MonoBehaviour
 {
     XRGrabInteractable grabInteractable;
     Transform attachPoint;
+    public GameObject graph;
 
     void Awake()
     {
@@ -44,6 +46,7 @@ public class XROffsetGrabbable : MonoBehaviour
     void OnEnable()
     {
         grabInteractable.selectEntered.AddListener(XRSelectEnter);
+        grabInteractable.selectExited.AddListener(XRSelectExit);
     }
 
     void OnDisable()
@@ -53,7 +56,14 @@ public class XROffsetGrabbable : MonoBehaviour
 
     public void XRSelectEnter(SelectEnterEventArgs selectEnterEventArgs)
     {
+        graph.GetComponent<RealtimeTransform>().RequestOwnership();
         attachPoint.position = selectEnterEventArgs.interactorObject.transform.position;
         attachPoint.rotation = selectEnterEventArgs.interactorObject.transform.rotation;
     }
+
+    public void XRSelectExit(SelectExitEventArgs selectExitEventArgs)
+    {
+        graph.GetComponent<RealtimeTransform>().ClearOwnership();
+    }
+
 }
