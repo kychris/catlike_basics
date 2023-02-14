@@ -354,7 +354,7 @@ MonoBehaviour:
   mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
   resolution: 96
   function: 0
-  transitionMode: 2
+  transitionMode: 0
   functionDuration: 1
   transitionDuration: 1
   computeShader: {fileID: 7200000, guid: 9471db0d47d82f440b73bbdf6e077aea, type: 3}
