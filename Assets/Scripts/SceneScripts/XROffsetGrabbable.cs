@@ -56,14 +56,15 @@ public class XROffsetGrabbable : MonoBehaviour
 
     public void XRSelectEnter(SelectEnterEventArgs selectEnterEventArgs)
     {
-        graph.GetComponent<RealtimeTransform>().RequestOwnership();
         attachPoint.position = selectEnterEventArgs.interactorObject.transform.position;
         attachPoint.rotation = selectEnterEventArgs.interactorObject.transform.rotation;
+        if (graph) graph.GetComponent<RealtimeTransform>().RequestOwnership();
+
     }
 
     public void XRSelectExit(SelectExitEventArgs selectExitEventArgs)
     {
-        graph.GetComponent<RealtimeTransform>().ClearOwnership();
+        if (graph) graph.GetComponent<RealtimeTransform>().ClearOwnership();
     }
 
 }

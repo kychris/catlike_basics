@@ -8,6 +8,7 @@ public class TestMidi : MonoBehaviour
 {
     public MidiStreamPlayer midiStreamPlayer;
     public long soundDuration;
+    public int velocity = 100;
     List<MPTKEvent> mptkEvents;
 
     // Start is called before the first frame update
@@ -15,7 +16,6 @@ public class TestMidi : MonoBehaviour
     {
         mptkEvents = new List<MPTKEvent>();
         midiStreamPlayer = FindObjectOfType<MidiStreamPlayer>();
-        midiStreamPlayer.MPTK_ChannelForcedPresetSet(0, 42);
     }
 
     [ContextMenu("Play")]
@@ -26,7 +26,7 @@ public class TestMidi : MonoBehaviour
             Channel = 0, // Between 0 and 15
             Duration = soundDuration, // Infinite
             Value = 60, // Between 0 and 127, with 60 plays a C4
-            Velocity = 100, // Max 127
+            Velocity = velocity, // Max 127
         };
         mptkEvents.Add(mptkEvent);
 
@@ -35,7 +35,7 @@ public class TestMidi : MonoBehaviour
             Channel = 0, // Between 0 and 15
             Duration = soundDuration, // Infinite
             Value = 64, // Between 0 and 127, with 60 plays a C4
-            Velocity = 100, // Max 127
+            Velocity = velocity, // Max 127
         };
         mptkEvents.Add(mptkEvent);
 
@@ -44,7 +44,7 @@ public class TestMidi : MonoBehaviour
             Channel = 0, // Between 0 and 15
             Duration = soundDuration, // Infinite
             Value = 67, // Between 0 and 127, with 60 plays a C4
-            Velocity = 100, // Max 127
+            Velocity = velocity, // Max 127
         };
         mptkEvents.Add(mptkEvent);
 
