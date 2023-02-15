@@ -1101,6 +1101,34 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "Instrument",
+            "id": "4de08c03-cec4-46d9-ad90-4f6ce0f48264",
+            "actions": [
+                {
+                    "name": "New action",
+                    "type": "Value",
+                    "id": "b2a721f8-75b6-46e0-ba28-3eeb5f198242",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "662a1ceb-6519-450a-9998-32aab2a4c1ad",
+                    "path": "<OculusTouchController>/trigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "New action",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": [

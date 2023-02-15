@@ -253,19 +253,7 @@ MonoBehaviour:
       m_Calls: []
   m_HoverEntered:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 20853834}
-        m_TargetAssemblyTypeName: MidiNotes, Assembly-CSharp
-        m_MethodName: PlayNotes
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   m_HoverExited:
     m_PersistentCalls:
       m_Calls: []
@@ -394,6 +382,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   midiStreamPlayer: {fileID: 0}
   notes: 43000000480000004a000000
+  TriggerAmount: {fileID: 2028765716970881170, guid: c348712bda248c246b8c49b3db54643f, type: 3}
 --- !u!1 &33164280
 GameObject:
   m_ObjectHideFlags: 0
