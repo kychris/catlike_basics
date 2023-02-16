@@ -26,11 +26,12 @@ public class MidiNotes : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log((int)(TriggerAmount.action.ReadValue<float>() * 127));
+        //Debug.Log((int)(TriggerAmount.action.ReadValue<float>() * 127));
     }
 
     public void PlayNotes(HoverEnterEventArgs hoverEnterEventArgs)
     {
+        Debug.Log(hoverEnterEventArgs.interactorObject.transform.gameObject.GetComponent<Rigidbody>().velocity.ToString());
         foreach (int note in notes)
         {
             var mptkEvent = new MPTKEvent()
