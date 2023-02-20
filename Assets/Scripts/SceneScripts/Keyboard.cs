@@ -2,27 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using System.Linq;
 
 public class Keyboard : MonoBehaviour
 {
-    public TMP_InputField NotesField;
-    public TMP_InputField OctavesField;
-    public TMP_InputField AccidentalsField;
+    public TMP_Text textField;
 
 
+    string[] components = new string[] { "", "", "" };
 
-    public void ChangeNotes(string c)
+    public void ChangeNote(ButtonType type, string c)
     {
-        NotesField.text = c;
+        components[(int)type] = c;
+        updateText();
     }
 
-    public void ChangeOctaves(string c)
+    void updateText()
     {
-        OctavesField.text = c;
-    }
-
-    public void ChangeAccidentals(string c)
-    {
-        AccidentalsField.text = c;
+        textField.text = string.Join("", components);
     }
 }
