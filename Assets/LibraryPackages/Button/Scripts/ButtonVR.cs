@@ -1,6 +1,7 @@
 /**************************************************
 Copyright : Copyright (c) RealaryVR. All rights reserved.
 Description: Script for VR Button functionality.
+https://www.youtube.com/watch?v=PyKW9kecyqg
 ***************************************************/
 
 using System.Collections;
