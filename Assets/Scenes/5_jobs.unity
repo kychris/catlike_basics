@@ -400,6 +400,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c43429805e4aa6e43804b8d0f2ef32f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  depth: 4
+  depth: 7
   mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
   material: {fileID: 2100000, guid: 4835998f98febf048a50ec23e9b89486, type: 2}
