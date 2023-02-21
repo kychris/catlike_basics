@@ -8,8 +8,8 @@ using UnityEngine.InputSystem;
 public enum ButtonType
 {
     Note = 0,
-    Octave = 1,
-    Accidental = 2
+    Accidental = 1,
+    Octave = 2,
 }
 
 public class SelectButton : MonoBehaviour
@@ -18,24 +18,15 @@ public class SelectButton : MonoBehaviour
     Keyboard keyboard;
     TextMeshProUGUI buttonText;
 
-    
-
     private void Start()
     {
         keyboard = GetComponentInParent<Keyboard>();
         buttonText = GetComponentInChildren<TextMeshProUGUI>();
         NameToButtonText();
-        GetComponentInChildren<ButtonVR>().onRelease.AddListener(testFunc);
+        GetComponentInChildren<ButtonVR>().onRelease.AddListener(inputNote);
     }
 
-    public void NameToButtonText()
-    {
-        buttonText.text = gameObject.name;
-    }
+    public void NameToButtonText() { buttonText.text = gameObject.name; }
 
-    void testFunc()
-    {
-        Debug.Log("hello");
-        keyboard.ChangeNote(buttonType, buttonText.text);
-    }
+    void inputNote() { keyboard.ChangeNote(buttonType, buttonText.text); }
 }

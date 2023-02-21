@@ -6,17 +6,23 @@ using System.Linq;
 using Newtonsoft;
 using Newtonsoft.Json;
 using System;
+using MidiPlayerTK;
 
 public class Keyboard : MonoBehaviour
 {
     public TMP_Text textField;
     public TextAsset midiConversionText;
+    Dictionary<string, int> noteToMidi;
+    SoundManager soundManager;
 
+    //Note, Accidental, Octave (C#4)
     string[] components = new string[] { "", "", "" };
 
-    private void Start()
+    private void Awake()
     {
-        LoadJson();
+        string json = midiConversionText.text;
+        noteToMidi = JsonConvert.DeserializeObject<Dictionary<string, int>>(json);
+        soundManager = FindObjectOfType<SoundManager>();
     }
 
     public void ChangeNote(ButtonType type, string c)
@@ -24,7 +30,7 @@ public class Keyboard : MonoBehaviour
         // Remove accidentals if seeing _
         if (c == "_")
         {
-            components[2] = "";
+            components[1] = "";
         }
         else
         {
@@ -35,21 +41,12 @@ public class Keyboard : MonoBehaviour
 
     void updateText()
     {
-        textField.text = string.Join("", components);
-    }
+        var newNote = string.Join("", components);
+        textField.text = newNote;
 
-    void LoadJson()
-    {
-        string json = midiConversionText.text;
-        Dictionary<string, int> data = JsonConvert.DeserializeObject<Dictionary<string, int>>(json);
-        foreach (KeyValuePair<string, int> kvp in data)
+        if (noteToMidi.Keys.Contains(newNote))
         {
-            Debug.Log(kvp.Key + " " + kvp.Value);
+            soundManager.PlayNote(noteToMidi[newNote]);
         }
     }
-}
-
-class MidiNum
-{
-    public string name;
 }
