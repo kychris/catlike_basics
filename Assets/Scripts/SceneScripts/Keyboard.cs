@@ -12,9 +12,11 @@ using Unity.VisualScripting;
 
 public class Keyboard : MonoBehaviour
 {
-    public TMP_Text textField;
+    public TMP_Text currentSelectionText;
     public TMP_Text allSelectionText;
     public TextAsset midiConversionText;
+    public GameObject notePrefab;
+
     Dictionary<string, int> noteToMidi;
     SoundManager soundManager;
 
@@ -46,7 +48,7 @@ public class Keyboard : MonoBehaviour
     void updateText()
     {
         var newNote = string.Join("", components);
-        textField.text = newNote;
+        currentSelectionText.text = newNote;
 
         if (noteToMidi.Keys.Contains(newNote))
         {
@@ -82,6 +84,15 @@ public class Keyboard : MonoBehaviour
 
     public void CreateNoteObject()
     {
+        GameObject newNote = Instantiate(notePrefab, transform, true);
+        newNote.GetComponent<MidiNotes>().midiStreamPlayer = FindObjectOfType<MidiStreamPlayer>();
 
+        foreach (string note in notes)
+        {
+            if (noteToMidi.Keys.Contains(note))
+            {
+                newNote.GetComponent<MidiNotes>().notes.Add(noteToMidi[note]);
+            }
+        }
     }
 }
