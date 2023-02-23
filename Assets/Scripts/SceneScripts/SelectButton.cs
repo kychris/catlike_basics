@@ -5,6 +5,9 @@ using UnityEngine.Events;
 using TMPro;
 using UnityEngine.InputSystem;
 using Unity.VisualScripting;
+//using static StylizedGrass.StylizedGrassGUI;
+
+
 
 public enum ButtonType
 {
@@ -19,16 +22,43 @@ public class SelectButton : MonoBehaviour
     public ButtonType buttonType;
     Keyboard keyboard;
     TextMeshProUGUI buttonText;
+    GameObject pressComponent;
 
     private void Start()
     {
         keyboard = GetComponentInParent<Keyboard>();
         buttonText = GetComponentInChildren<TextMeshProUGUI>();
-        NameToButtonText();
         GetComponentInChildren<ButtonVR>().onRelease.AddListener(inputNote);
+
+        NameToButtonText();
+        pressComponent = transform.Find("Press").gameObject;
+        SetColor();
     }
 
-    public void NameToButtonText() { buttonText.text = gameObject.name; }
+    public void NameToButtonText() { 
+        //if (buttonType != ButtonType.Function)
+            buttonText.text = gameObject.name;
+    }
+
+    void SetColor()
+    {
+        var material = pressComponent.GetComponent<Renderer>().material;
+        switch (buttonType)
+        {
+            case ButtonType.Note:
+                //material.color = Color.blue;
+                break;
+            case ButtonType.Accidental:
+                material.color = new Color(0.5f, 1.0f, 0.5f);
+                break;
+            case ButtonType.Octave:
+                material.color = new Color(0.5f, 0.5f, 1.0f);
+                break;
+            case ButtonType.Function:
+                material.color = new Color(1.0f, 0.5f, 0.5f);
+                break;
+        }
+    }
 
     void inputNote() 
     {

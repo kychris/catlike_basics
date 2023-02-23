@@ -63,6 +63,7 @@ public class Keyboard : MonoBehaviour
             notes.Add(string.Join("", components));
         }
         UpdateAllSelectionText();
+        ClearCurrentNote();
     }
 
     public void DeleteNote()
