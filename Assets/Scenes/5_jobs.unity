@@ -380,14 +380,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2065538086}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0.17364816, w: 0.9848078}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 20}
 --- !u!114 &2065538091
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -406,9 +406,9 @@ MonoBehaviour:
   material: {fileID: 2100000, guid: aefdb3c570f09ed46a63c9e1d1213729, type: 2}
   gradientA:
     serializedVersion: 2
-    key0: {r: 1, g: 1, b: 1, a: 1}
-    key1: {r: 1, g: 0, b: 0, a: 1}
-    key2: {r: 1, g: 0, b: 0, a: 0}
+    key0: {r: 0.9528302, g: 0.3979329, b: 0.06698735, a: 0.5529412}
+    key1: {r: 0.38679248, g: 0.2877487, b: 0.16220535, a: 0.75686276}
+    key2: {r: 0.38679248, g: 0.2877487, b: 0.16220535, a: 0}
     key3: {r: 0, g: 0, b: 0, a: 0}
     key4: {r: 0, g: 0, b: 0, a: 0}
     key5: {r: 0, g: 0, b: 0, a: 0}
@@ -435,8 +435,8 @@ MonoBehaviour:
     m_NumAlphaKeys: 2
   gradientB:
     serializedVersion: 2
-    key0: {r: 0.2004698, g: 0.5285518, b: 0.990566, a: 1}
-    key1: {r: 0.990566, g: 0.64694196, b: 0.06029539, a: 1}
+    key0: {r: 0.8113208, g: 0.34708855, b: 0.16419433, a: 0.44705883}
+    key1: {r: 0.990566, g: 0.64694196, b: 0.06029539, a: 0.5019608}
     key2: {r: 0, g: 0, b: 0, a: 0}
     key3: {r: 0, g: 0, b: 0, a: 0}
     key4: {r: 0, g: 0, b: 0, a: 0}
