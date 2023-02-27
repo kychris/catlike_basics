@@ -8,6 +8,7 @@ using UnityEngine.UIElements;
 using static Unity.Mathematics.math;
 using float4x4 = Unity.Mathematics.float4x4;
 using quaternion = Unity.Mathematics.quaternion;
+using Random = UnityEngine.Random;
 
 
 public class Fractal : MonoBehaviour
@@ -43,18 +44,28 @@ public class Fractal : MonoBehaviour
         }
     }
 
-
-
-    [SerializeField, Range(1, 8)]
+    [SerializeField, Range(3, 8)]
     int depth = 4;
 
     [SerializeField]
-    Mesh mesh;
+    Mesh mesh, leafMesh;
 
     [SerializeField]
     Material material;
 
-    static readonly int matricesId = Shader.PropertyToID("_Matrices");
+    [SerializeField]
+    Gradient gradientA, gradientB;
+
+    [SerializeField]
+    Color leafColorA, leafColorB;
+
+    static readonly int
+        colorAId = Shader.PropertyToID("_ColorA"),
+        colorBId = Shader.PropertyToID("_ColorB"), 
+        matricesId = Shader.PropertyToID("_Matrices"),
+        sequenceNumbersId = Shader.PropertyToID("_SequenceNumbers");
+
+
 
     struct FractalPart
     {
@@ -79,19 +90,24 @@ public class Fractal : MonoBehaviour
     ComputeBuffer[] matricesBuffers;
 
     static MaterialPropertyBlock propertyBlock;
+    	
+    Vector4[] sequenceNumbers;
+
 
     private void OnEnable()
     {
         parts = new NativeArray<FractalPart>[depth];
         matrices = new NativeArray<float4x4>[depth];
         matricesBuffers = new ComputeBuffer[depth];
-        int stride = 16 * 4;
 
+        sequenceNumbers = new Vector4[depth];
+        int stride = 16 * 4;
         for (int i = 0, length = 1; i < parts.Length; i++, length *= 5)
         {
             parts[i] = new NativeArray<FractalPart>(length, Allocator.Persistent);
             matrices[i] = new NativeArray<float4x4>(length, Allocator.Persistent);
             matricesBuffers[i] = new ComputeBuffer(length, stride);
+            sequenceNumbers[i] = new Vector4(Random.value, Random.value, Random.value, Random.value);
         }
 
         parts[0][0] = CreatePart(0);
@@ -121,6 +137,7 @@ public class Fractal : MonoBehaviour
         parts = null;
         matrices = null;
         matricesBuffers = null;
+        sequenceNumbers = null;
     }
     void OnValidate()
     {
@@ -166,13 +183,35 @@ public class Fractal : MonoBehaviour
         jobHandle.Complete(); //bundle all jobs together
 
         var bounds = new Bounds(rootPart.worldPosition, 3f * objectScale * Vector3.one);
+        int leafIndex = matricesBuffers.Length - 1;
         for (int i = 0; i < matricesBuffers.Length; i++)
         {
             ComputeBuffer buffer = matricesBuffers[i];
             buffer.SetData(matrices[i]);
+
+            Mesh instanceMesh;
+            Color colorA, colorB;
+            if (i == leafIndex)
+            {
+                colorA = leafColorA;
+                colorB = leafColorB;
+                instanceMesh = leafMesh;
+            }
+            else
+            {
+                float gradientInterpolator = i / (matricesBuffers.Length - 2f);
+                colorA = gradientA.Evaluate(gradientInterpolator);
+                colorB = gradientB.Evaluate(gradientInterpolator);
+                instanceMesh = mesh;
+            }
+            propertyBlock.SetColor(colorAId, colorA);
+            propertyBlock.SetColor(colorBId, colorB);
+
             propertyBlock.SetBuffer(matricesId, buffer);
+            propertyBlock.SetVector(sequenceNumbersId, sequenceNumbers[i]);
+
             Graphics.DrawMeshInstancedProcedural(
-                mesh, 0, material, bounds, buffer.count, propertyBlock
+                instanceMesh, 0, material, bounds, buffer.count, propertyBlock
             );
         }
     }
