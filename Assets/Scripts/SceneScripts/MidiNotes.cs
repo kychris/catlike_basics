@@ -40,7 +40,7 @@ public class MidiNotes : MonoBehaviour
                 Channel = 0, // Between 0 and 15
                 Duration = -1, // Infinite
                 Value = note, // Between 0 and 127, with 60 plays a C4
-                Velocity = velocity, // Max 127
+                Velocity = velocity > 127 ? 127 : velocity, // Max 127
             };
             midiStreamPlayer.MPTK_PlayEvent(mptkEvent);
         }
