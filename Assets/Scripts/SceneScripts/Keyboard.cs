@@ -14,10 +14,7 @@ public class Keyboard : MonoBehaviour
 {
     public TMP_Text currentSelectionText;
     public TMP_Text allSelectionText;
-    public TextAsset midiConversionText;
     public GameObject notePrefab;
-
-    Dictionary<string, int> noteToMidi;
     SoundManager soundManager;
 
     //Note, Accidental, Octave (C#4)
@@ -26,8 +23,8 @@ public class Keyboard : MonoBehaviour
 
     private void Awake()
     {
-        string json = midiConversionText.text;
-        noteToMidi = JsonConvert.DeserializeObject<Dictionary<string, int>>(json);
+        NotesDictionary dict = new NotesDictionary();
+        dict.Initialize();
         soundManager = FindObjectOfType<SoundManager>();
     }
 
@@ -50,10 +47,7 @@ public class Keyboard : MonoBehaviour
         var newNote = string.Join("", components);
         currentSelectionText.text = newNote;
 
-        if (noteToMidi.Keys.Contains(newNote))
-        {
-            soundManager.PlayNote(noteToMidi[newNote]);
-        }
+        soundManager.PlayNote(NotesDictionary.Instance.NoteToMidi(newNote));
     }
 
     public void AddNote()
@@ -90,10 +84,7 @@ public class Keyboard : MonoBehaviour
 
         foreach (string note in notes)
         {
-            if (noteToMidi.Keys.Contains(note))
-            {
-                newNote.GetComponent<MidiNotes>().notes.Add(noteToMidi[note]);
-            }
+            newNote.GetComponent<MidiNotes>().notes.Add(NotesDictionary.Instance.NoteToMidi(note));
         }
     }
 }
