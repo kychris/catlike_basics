@@ -10,6 +10,7 @@ using MidiPlayerTK;
 public class MidiNotes : MonoBehaviour
 {
     public MidiStreamPlayer midiStreamPlayer;
+    public List<string> editorNotesInput = new List<string>();
     public List<int> notes = new List<int>();
     public InputActionReference TriggerAmount;
     XRGrabInteractable grabInteractable;
@@ -19,19 +20,24 @@ public class MidiNotes : MonoBehaviour
     void Start()
     {
         midiStreamPlayer = FindObjectOfType<MidiStreamPlayer>();
+
+        // If contains editor override
+        if (editorNotesInput.Count > 0) {
+            convertNotesInput();
+        }
+    }
+
+    private void convertNotesInput() {
+        notes = new List<int>();
+        foreach (string note in editorNotesInput) { 
+            notes.Add(NotesDictionary.Instance.NoteToMidi(note));
+        }
     }
 
     void OnEnable() { grabInteractable.hoverEntered.AddListener(PlayNotes); }
-    //void OnDisable() { grabInteractable.hoverEntered.RemoveListener(PlayNotes); }
-
-    private void Update()
-    {
-        //Debug.Log((int)(TriggerAmount.action.ReadValue<float>() * 127));
-    }
 
     public void PlayNotes(HoverEnterEventArgs hoverEnterEventArgs)
     {
-        Debug.Log(hoverEnterEventArgs.interactorObject.transform.gameObject.GetComponent<Rigidbody>().velocity.ToString());
         int velocity = GetControllerVelocity(hoverEnterEventArgs.interactorObject.transform.gameObject.GetComponent<ControllerVelocity>());
         foreach (int note in notes)
         {
