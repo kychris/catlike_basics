@@ -12,8 +12,10 @@ public class NotesDictionary : MonoBehaviour {
 
     // Start is called before the first frame update
     public void Initialize() {
-        string[] searchResuls = AssetDatabase.FindAssets("NotesToMidiNums");
-        TextAsset midiConversionText = AssetDatabase.LoadAssetAtPath<TextAsset>(AssetDatabase.GUIDToAssetPath(searchResuls[0]));
+        //string[] searchResuls = AssetDatabase.FindAssets("NotesToMidiNums");
+        //TextAsset midiConversionText = AssetDatabase.LoadAssetAtPath<TextAsset>(AssetDatabase.GUIDToAssetPath(searchResuls[0]));
+
+        TextAsset midiConversionText = Resources.Load<TextAsset>("Assets/Scripts/SceneScripts/NotesToMidiNums");
         string json = midiConversionText.text;
         noteToMidiDict = JsonConvert.DeserializeObject<Dictionary<string, int>>(json);
 

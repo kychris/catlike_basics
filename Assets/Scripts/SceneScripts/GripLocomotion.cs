@@ -24,11 +24,12 @@ public class GripLocomotion : MonoBehaviour
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
         if (isMoving) {
             if (LeftGrip.action.inProgress == false && RightGrip.action.inProgress == false) {
                 isMoving = false;
+                return;
             }
             Vector3 curControllerLocation = leftControllerTransform.position;
             Vector3 diff = new Vector3(
